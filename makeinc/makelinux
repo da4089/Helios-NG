@@ -1,0 +1,19 @@
+# Make Helios/TRAN on a Linux box
+
+export HPROC=TRAN
+export HHOST=LINUX
+
+export HSRC=/home/d/work/third-party/Helios-NG
+# export HSRC=$hsrc
+
+export HPROD=/home/d/HeliosRoot/Production/TRAN
+
+export HHOSTBIN=/home/d/HeliosRoot/hostbin
+
+export HLICENSEE=PERIHELION
+
+if [ -e LINUX ]; then
+	cd LINUX; make $*
+else
+       	make $*
+fi

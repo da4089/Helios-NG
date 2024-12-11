@@ -56,7 +56,7 @@ include $(HSRC)/makeinc/$(HHOST).mak	# Default host system variables
 # Processor specific sources are held in the processor specific subdir.,
 # generic ones in the directory above it.
 
-HVPATH := $(HSRC)/$(COMPONENT):$(HSRC)/$(COMPONENT)/sun
+HVPATH := $(HSRC)/$(COMPONENT):$(HSRC)/$(COMPONENT)/linux
 
 ifdef RSRC
  HVPATH := $(RSRC)/$(COMPONENT)/$(HPROC):$(HSRC)/$(COMPONENT):$(RSRC)/$(COMPONENT)
@@ -112,8 +112,9 @@ Sun3Binaries := serverwinxv serverwinxaw serverwinxt hydra hydramon server
 Sun4DependantBinaries := $(addprefix $(HPROD)/, $(addsuffix .sun4, $(Sun4Binaries) ) )
 Sun3DependantBinaries := $(addprefix $(HPROD)/, $(addsuffix .sun3, $(Sun3Binaries) ) )
 
-$(SRCHOME)/SUN4/$(Sun4Binaries):
-$(SRCHOME)/SUN3/$(Sun3Binaries):
+# da: disabled
+#$(SRCHOME)/SUN4/$(Sun4Binaries):
+#$(SRCHOME)/SUN3/$(Sun3Binaries):
 
 # ideally we should perform a remote make of these files ...
 $(Sun4DependantBinaries) : $(HPROD)/%.sun4 : $(SRCHOME)/SUN4/%
@@ -133,7 +134,7 @@ $(Sun3DependantBinaries) : $(HPROD)/%.sun3 : $(SRCHOME)/SUN3/%
 TARGETS =
 
 default : $(TARGETS) Xdefault
-install	: $(TARGETS) Xinstall $(Sun3DependantBinaries) $(Sun4DependantBinaries)
+install	: $(TARGETS) Xinstall
 	$(TOUCH) install
 
 clean	: Xclean
@@ -226,7 +227,7 @@ HYDRAOBJ   = hydra.o
 # hydra monitor
 
 HYDRAMON   = hydramon.o
-	
+
 
 #-----------------------------------------------------------------------------
 # Other generic component variables:
